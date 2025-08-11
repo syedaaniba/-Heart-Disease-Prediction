@@ -1,23 +1,23 @@
-# Customer Churn Prediction
+# Heart Disease Prediction
 
-This project uses machine learning to predict customer churn. It utilizes a **Logistic Regression** model and a pipeline for data preprocessing and model training.
+This project uses machine learning to predict the presence of heart disease based on patient data. It utilizes a **Logistic Regression** model and a pipeline for data preprocessing and model training.
 
 ---
 
 ## The Data
 
-The dataset used in this project is not specified, but it contains customer information and a target variable indicating whether a customer has churned (left the service).
+The dataset used in this project is the **Cleveland Heart Disease** dataset from the UCI Machine Learning Repository. It contains 14 features, including clinical and demographic information, and a target variable indicating the presence of heart disease.
 
 ---
 
 ## Project Structure
 
-The main script is `customer_churn_predictor.ipynb`. It performs the following steps:
-- **Data Loading and Cleaning**: The dataset is loaded, and any necessary data cleaning or preparation is performed.
-- **Preprocessing**: Data is prepared for the model, which may include scaling numerical features and encoding categorical features.
-- **Model Training**: A `Pipeline` is used to combine the preprocessing steps and a **Logistic Regression** classifier.
-- **Hyperparameter Tuning**: The best model is selected through a process of tuning the model's parameters.
-- **Evaluation**: The final model is evaluated on a test set, and its performance is reported.
+The main script is `heart_disease_predictor.py`. It performs the following steps:
+- **Data Loading and Cleaning**: The dataset is loaded, missing values are handled, and the target variable is prepared.
+- **Preprocessing**: A `ColumnTransformer` is used to scale numerical features and leave categorical features untouched.
+- **Model Training**: A `Pipeline` combines the preprocessing and a `LogisticRegression` classifier.
+- **Hyperparameter Tuning**: A `GridSearchCV` with `StratifiedKFold` is used to find the best hyperparameters for the model.
+- **Evaluation**: The final model is evaluated on a test set, and its performance is reported using **accuracy**, a **confusion matrix**, and a **classification report**.
 
 ---
 
@@ -27,12 +27,12 @@ It's pretty straightforward to get this project running. Just follow these steps
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/syedaaniba/customer-churn-prediction_.git](https://github.com/syedaaniba/customer-churn-prediction_.git)
+    git clone [your_repo_url]
     ```
 
 2.  **Go into the project folder:**
     ```bash
-    cd customer-churn-prediction_
+    cd heart_disease_prediction
     ```
 
 3.  **Install the libraries:** Make sure you have **pandas** and **scikit-learn** installed. If not, just run:
@@ -40,28 +40,34 @@ It's pretty straightforward to get this project running. Just follow these steps
     pip install pandas scikit-learn
     ```
 
-4.  **Launch the notebook:**
+4.  **Execute the script:**
     ```bash
-    jupyter notebook customer_churn_predictor.ipynb
+    python heart_disease_predictor.py
     ```
 
 ---
 
+## Result 
+## Best parameters found:
+`{'classifier__C': 1, 'classifier__solver': 'lbfgs'}`
+
+## Accuracy on test set:
+`0.8833`
+
+## Confusion Matrix:
+[[32 4]
+[ 3 21]]
+
+shell
+Copy
+Edit
+
+## Classification Report:
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| 0     | 0.91      | 0.89   | 0.90     | 36      |
+| 1     | 0.84      | 0
+
 ## Final Results
 
-Best parameters found:  {'classifier__C': 1, 'classifier__solver': 'lbfgs'}
-Accuracy on test set: 0.8833
-Confusion Matrix:
-[[32  4]
- [ 3 21]]
-Classification Report:
-              precision    recall  f1-score   support
-
-           0       0.91      0.89      0.90        36
-           1       0.84      0.88      0.86        24
-
-    accuracy                           0.88        60
-   macro avg       0.88      0.88      0.88        60
-weighted avg       0.88      0.88      0.88        60
-
-After running the notebook, the following results are printed to the console:
+After running the script, the following results are printed to the console:
